@@ -1,0 +1,1 @@
+# android_device_alldocube_T1020S
