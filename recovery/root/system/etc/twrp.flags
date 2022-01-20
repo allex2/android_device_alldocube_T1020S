@@ -1,0 +1,35 @@
+system /system ext4 ro,barrier=1 wait,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey
+vendor /vendor ext4 ro,barrier=1 wait,logical,first_stage_mount
+product /product ext4 ro,barrier=1 wait,logical,first_stage_mount
+
+/system_root      ext4     /dev/block/mapper/system       flags=backup=1;wipeingui
+/system_image     emmc     /dev/block/mapper/system       flags=backup=1;flashimg=1
+/vendor_image     emmc     /dev/block/mapper/vendor       flags=display="vendor_image";flashimg=1;backup=1
+/product_image     emmc     /dev/block/mapper/product       flags=display="product_image";flashimg=1;backup=1
+
+/data                           f2fs     /dev/block/by-name/userdata        flags=fileencryption=aes-256-cts
+/vbmeta                         emmc     /dev/block/by-name/vbmeta                   flags=backup=1;flashimg=1      
+
+/boot                           emmc     /dev/block/by-name/boot                  flags=backup=1;flashimg=1
+/recovery                       emmc     /dev/block/by-name/recovery              flags=backup=1;flashimg=1
+
+
+
+
+/dev/block/by-name/prodnv                 /mnt/vendor         ext4    noatime,nosuid,nodev,nomblk_io_submit,noauto_da_alloc     wait,check
+/devices/platform/soc/soc:aon/5fff0000.usb/musb-hdrc.*.auto/usb*                auto      vfat defaults voldmanaged=usbdisk:auto
+/dev/block/by-name/socko                  /mnt/vendor/socko ext4 ro,noatime,nosuid,nodev,nomblk_io_submit,noauto_da_alloc wait,avb=socko,check
+/dev/block/by-name/odmko                  /mnt/vendor/odmko ext4 ro,noatime,nosuid,nodev,nomblk_io_submit,noauto_da_alloc wait,avb=odmko,check
+
+
+
+
+
+
+
+
+
+/external_sd      vfat     /dev/block/mmcblk1p1  /dev/block/mmcblk1            flags=display="external_sd";storage;wipeingui;removable;fsflags="utf8"
+/usb-otg          vfat     /dev/block/sda1  /dev/block/sda                     flags=display="usb-otg";storage;wipeingui;removable;fsflags="utf8"
+
+
