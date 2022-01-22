@@ -42,7 +42,7 @@ TARGET_USES_UEFI := true
 TARGET_BOARD_PLATFORM := mt6833
 
 # Kernel
-BOARD_KERNEL_CMDLINE := console=ttyS1,115200n8 buildvariant=user
+BOARD_KERNEL_CMDLINE := console=ttyS1,115200n8
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_IMAGE_NAME := kernel
 BOARD_KERNEL_BASE := 0x00000000
